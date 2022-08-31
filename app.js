@@ -32,9 +32,7 @@ const toppings = [{
   price: 2
 }]
 const cart = {
-  flavor:[],
-  vessel:{},
-  topping:[],
+ 
 }
 let priceTotal = 0
 
@@ -119,12 +117,7 @@ function drawTopping(){
 
 
 function addToCart(){
-  let flavor= iceCreams.find(iceCream =>{
-    JSON.stringify(iceCream.price)
-  })
-  let cartFlavor = cart.flavor
-  cartFlavor.push(flavor)
-  console.log(cart);
+ 
 }
 
 
