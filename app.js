@@ -31,18 +31,26 @@ const toppings = [{
   image: 'https://www.eatthis.com/wp-content/uploads/sites/4/2020/05/chocolate-chips.jpg?quality=82&strip=1&resize=640%2C360',
   price: 2
 }]
+const cart = {
+  flavor:[],
+  vessel:{},
+  topping:[],
+}
 let priceTotal = 0
 let table = document.getElementById("table")
+let iceCream_Div=document.getElementById("ice-creams")
+let vessels_Div = document.getElementById("vessels")
+let toppings_Div= document.getElementById("toppings")
 
 
-function draw(){
-  let iceCream_Div=document.getElementById("ice-creams")
+function drawIceCreams(){
+
 let template = ''
 iceCreams.forEach(icecream =>{
   template+= `
-  <div>
+  
 
-  <div class="card mx-3" style="width: 10rem;">
+  <div class="card mx-1" style="width: 10rem;" ">
   <img src="${icecream.image}" class="card-img-top" alt="..." style="width:10rem; height:10rem">
   <div class="card-body">
     <p class="card-text">Style: ${icecream.name}</p>
@@ -50,11 +58,85 @@ iceCreams.forEach(icecream =>{
   </div>
 </div>
 
+
   
-  </div>
   
+  
+
   `
 })
+
+
+
+
 iceCream_Div.innerHTML = template
 }
-draw()
+
+function drawVessels(){
+  let template = ''
+  vessels.forEach(vessel =>{
+    
+    template+= `
+    
+    
+    <div class="card mx-1" style="width: 10rem; ">
+    <img src="${vessel.image}" class="card-img-top" alt="..." style="width:100%; height:100%">
+    <div class="card-body">
+    <p class="card-text">Style: ${vessel.name}</p>
+    <p class="card-text"> Price :${vessel.price}</p>
+    </div>
+    </div>
+    
+    
+    
+    
+    
+    
+    `
+    vessels_Div.innerHTML= template
+  })
+}
+
+function drawTopping(){
+  let template = ''
+  toppings.forEach(topping =>{
+    
+    template+= `
+    
+    
+    <div class="card mx-1" style="width: 10rem; ">
+    <img src="${topping.image}" class="card-img-top" alt="..." style="width:100%; height:100%">
+    <div class="card-body">
+    <p class="card-text ">Style: ${topping.name}</p>
+    <p class="card-text "> Price :${topping.price}</p>
+    </div>
+    </div>
+    
+    
+    
+    
+    
+    
+    `
+    toppings_Div.innerHTML= template
+  })
+  
+}
+
+
+
+function addPrice(){}
+
+// function addPrice(){
+//   let flavorPrice=iceCreams.find(icecream => icecream.price.valueOf)
+//   let vesselPrice= vessels.find(vessel => vessel.price.valueOf)
+//   let toppingPrice = toppings.find(topping => topping.price.valueOf)
+
+// }
+// addPrice()
+
+
+// onclick="('${addPrice()}')
+drawTopping()
+drawIceCreams()
+drawVessels()
