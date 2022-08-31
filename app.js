@@ -37,7 +37,7 @@ const cart = {
   topping:[],
 }
 let priceTotal = 0
-let table = document.getElementById("table")
+
 let iceCream_Div=document.getElementById("ice-creams")
 let vessels_Div = document.getElementById("vessels")
 let toppings_Div= document.getElementById("toppings")
@@ -52,6 +52,7 @@ iceCreams.forEach(icecream =>{
   <div class="card-body">
     <p class="card-text">Style: ${icecream.name}</p>
     <p class="card-text"> Price :${icecream.price}</p>
+    <button id="add-cart" type="button" class="btn btn-danger onclick=""">Add To Cart</button>
   </div>
 </div>`
 })
@@ -115,7 +116,26 @@ function drawTopping(){
 
 
 
-function addPrice(){}
+
+
+function addToCart(){
+  let flavor= iceCreams.find(iceCream =>{
+    JSON.stringify(iceCream.price)
+  })
+  let cartFlavor = cart.flavor
+  cartFlavor.push(flavor)
+  console.log(cart);
+}
+
+
+// function select(){
+
+//  let flavor = iceCreams.find(icecream =>{
+//   icecream.price.valueOf
+//  })
+//  console.log(flavor);
+// }
+
 
 // function addPrice(){
 //   let flavorPrice=iceCreams.find(icecream => icecream.price.valueOf)
@@ -125,6 +145,12 @@ function addPrice(){}
 // }
 // addPrice()
 
+
+
+// let addCart=document.getElementById("add-cart")
+// addCart.addEventListener('click', icecream =>{
+//   cart.flavor.push()
+// })
 
 // onclick="('${addPrice()}')
 drawTopping()
