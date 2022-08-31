@@ -31,9 +31,9 @@ const toppings = [{
   image: 'https://www.eatthis.com/wp-content/uploads/sites/4/2020/05/chocolate-chips.jpg?quality=82&strip=1&resize=640%2C360',
   price: 2
 }]
-const cart = {
+const cart = []
  
-}
+
 let priceTotal = 0
 
 let iceCream_Div=document.getElementById("ice-creams")
@@ -117,7 +117,10 @@ function drawTopping(){
 
 
 function addToCart(){
- 
+//  const flavor = iceCreams.find(icecream => icecream.name)
+//  console.log("flavor:", flavor);
+findItem = vessels.find(vessel => vessel.name == "Strawberry" )
+console.log(findItem);
 }
 
 
