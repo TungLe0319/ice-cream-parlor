@@ -173,8 +173,10 @@ function drawTotal() {
    vessels.forEach(vessel =>{
     total += vessel.price *  vessel.quantity
    })
-   
-   total_Div.innerText = total
+   toppings.forEach(topping => {
+    total += topping.price * topping.quantity
+   })
+   total_Div.innerText = total.toFixed(2)
 }
 
 // function addPrice(){
