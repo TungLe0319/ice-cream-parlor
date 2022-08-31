@@ -44,26 +44,16 @@ let toppings_Div= document.getElementById("toppings")
 
 
 function drawIceCreams(){
-
 let template = ''
 iceCreams.forEach(icecream =>{
   template+= `
-  
-
   <div class="card mx-1" style="width: 10rem;" ">
   <img src="${icecream.image}" class="card-img-top" alt="..." style="width:10rem; height:10rem">
   <div class="card-body">
     <p class="card-text">Style: ${icecream.name}</p>
     <p class="card-text"> Price :${icecream.price}</p>
   </div>
-</div>
-
-
-  
-  
-  
-
-  `
+</div>`
 })
 
 
