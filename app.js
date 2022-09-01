@@ -53,141 +53,70 @@ const toppings = [
   },
 ];
 
-function drawIceCreams() {
-  let iceCream_Div = document.getElementById('ice-creams');
-  let template = '';
-  iceCreams.forEach((icecream) => {
-    template += `
-    <div class="card mx-1" style="width: 10rem;" ">
-    <img onclick="addFlavorToCart('${icecream.name}')" src="${icecream.image}" class="card-img-top" alt="..." style="width:10rem; height:10rem" >
-    <div class="card-body">
-    <p class="card-text">Style:<br> ${icecream.name}</p>
-    <p class="card-text"> Price :$${icecream.price}</p>
-   
-    </div>
-    </div>`;
-  });
+// LOGIC  IS THERES DISPLAYED ITEMS IN A STORE
+// WHEN THEY SELECT/CLICK A AN ITEM ADD IT TO A CART AND ADD THE TOTAL PRICE /QUANTITY OF EVERYTHING IN THE CART.
 
-  iceCream_Div.innerHTML = template;
+
+
+
+// PARAMETER IS THE name we put in the onclickfunction
+// THIS IS A BUTTON CLICK EVENT.
+// INCREASES QUANTITY OF FLAVORS IN THE ARRAY
+function addFlavorsToCart(name) {
+  let iceCream = iceCreams.find((flavor) => flavor.name == name);
+  iceCream.quantity++;
+
+  // THIS MAKES SURE  THE HTML BUTTON AND JAVASCRIPT IS CONNECTING PROPERLY
+  console.log('quantity', iceCream.quantity);
+  // if this function is true then drawCart() will work.
+  drawCart()
 }
 
-function addFlavorToCart(name) {
-  let flavor = iceCreams.find((flavor) => flavor.name == name);
-  flavor.quantity++;
-  console.log(flavor.name);
-  drawCart();
-}
-
-function drawVessels() {
-  let vessels_Div = document.getElementById('vessels');
-  let template = '';
-  vessels.forEach((vessel) => {
-    template += `
-    <div class="card mx-1" style="width: 9rem; ">
-    <img onclick="addVesselToCart('${vessel.name}')" src="${vessel.image}" class="card-img-top" alt="..." style="width:100%; height:100%">
-    <div class="card-body">
-    <p class="card-text">Style: ${vessel.name}</p>
-    <p class="card-text"> Price :${vessel.price}</p>
-    </div>
-    </div>
-    `;
-    vessels_Div.innerHTML = template;
-  });
-}
-function addVesselToCart(name) {
-  let vessel = vessels.find((vessel) => vessel.name == name);
-  vessel.quantity++;
-  console.log(vessel.name);
-  drawCart();
-}
-
-function drawTopping() {
-  let toppings_Div = document.getElementById('toppings');
-  let template = '';
-  toppings.forEach((topping) => {
-    template += `
-    
-    
-    <div class="card mx-1" style="width: 10rem; ">
-    <img onclick="addToppingToCart('${topping.name}')" src="${topping.image}" class="card-img-top" alt="..." style="width:100%; height:100%">
-    <div class="card-body">
-    <p class="card-text ">Style: ${topping.name}</p>
-    <p class="card-text "> Price :${topping.price}</p>
-    </div>
-    </div>
-    
-    
-    `;
-    toppings_Div.innerHTML = template;
-  });
-}
-
-function addToppingToCart(name) {
-  let topping = toppings.find((topping) => topping.name == name);
-  topping.quantity++;
-  console.log(topping.name);
-  drawCart();
-}
-
+// grabs the information to paste into HTML through the addFlavorsToCart(name)Function
+// accessing the array of ice-creams and checking if the quantity is ABOVE 0 if so display it.
 function drawCart() {
-  let cart = document.getElementById('cart');
+  let cart_DivInTheHTML = document.getElementById('cart');
+  // when making a template you always want the template to begin as an empty string ''
+  // `` backticks always used for templates
   let template = '';
-  iceCreams.forEach((flavor) => {
-    if (flavor.quantity > 0) {
-      template += `<div class="d-flex justify-content-between bg-info rounded px-2 border-bottom border-1 border-dark">
-      <p class ="col-4 ">${flavor.name}</p>
-      <p class ="col-4 text-center">x${flavor.quantity}</p>
-      <p class ="col-4 text-end">$${flavor.price}</p>
-    </div>`;
-    }
-  });
-  vessels.forEach((vessel) => {
-    if (vessel.quantity > 0) {
-      template += `<div class="d-flex justify-content-between px-2 bg-warning rounded border-bottom border-1 border-dark">
-      <p>${vessel.name}</p>
-      <p>x${vessel.quantity}</p>
-      <p>$${vessel.price}</p>
-    </div>`;
-    }
-  });
-  toppings.forEach((topping) => {
-    if (topping.quantity > 0) {
-      template += `<div class="d-flex justify-content-between px-2 bg-danger rounded border-bottom border-1 border-dark">
-      <p>${topping.name}</p>
-      <p>x${topping.quantity}</p>
-      <p>$${topping.price}</p>
+
+  iceCreams.forEach((iceCream) => {
+    if (iceCream.quantity > 0) {
+      template += `
+    <div class="d-flex border border-4 bg-dark text-light p-3">
+    <p class="col-md-3   fs-5">${iceCream.name}</p>
+    <p class="col-md-4 fs-5 text-center text-danger">x${iceCream.quantity}</p>
+    <p class="col-md-4 fs-5 text-end text-success">$${iceCream.price}</p>
     </div>`;
     }
   });
 
-  cart.innerHTML = template;
-  drawTotal()
+
+// the empty spot ID we found we are now making it equal to the new template we made.
+// .innerHTML adds HTML ELEMENTS LIKE DIVS AND CONTAINS AND SHIT LIKE THAT
+// .innerText just TEXT
+cart_DivInTheHTML.innerHTML=template
+drawTotal()
 }
 
+// 
 function drawTotal() {
-   let total = 0
-   let total_Div = document.getElementById('total')
-   iceCreams.forEach(flavor => {
-    total += flavor.price * flavor.quantity
-   })
-   vessels.forEach(vessel =>{
-    total += vessel.price *  vessel.quantity
-   })
-   toppings.forEach(topping => {
-    total += topping.price * topping.quantity
-   })
-   total_Div.innerText = total.toFixed(2)
+let total_Div= document.getElementById('total')  
+ let total = 0
+iceCreams.forEach(flavor =>{
+ total += flavor.quantity * flavor.price
+})
+console.log(total)
+
+total_Div.innerText=total.toFixed(2)
 }
 
-// function addPrice(){
-//   let flavorPrice=iceCreams.find(icecream => icecream.price.valueOf)
-//   let vesselPrice= vessels.find(vessel => vessel.price.valueOf)
-//   let toppingPrice = toppings.find(topping => topping.price.valueOf)
 
-// }
-// addPrice()
+function checkOut() {
+iceCreams.forEach(iceCream =>{
+  iceCream.quantity = 0
+})
 
-// onclick="('${addPrice()}')
-drawTopping();
-drawIceCreams();
-drawVessels();
+drawCart()
+
+}

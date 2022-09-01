@@ -15,21 +15,8 @@
       integrity="sha384-gH2yIJqKdNHPEq0n4Mqa/HGKIhSkIHeL5AyhkYV8i59U5AR6csBvApHHNl/vI1Bx"
       crossorigin="anonymous"
     />
-    <!-- NOTE MDI ICONS -->
-    <link
-      rel="stylesheet"
-      href="https://cdnjs.cloudflare.com/ajax/libs/MaterialDesign-Webfont/7.0.96/css/materialdesignicons.min.css"
-      integrity="sha512-fXnjLwoVZ01NUqS/7G5kAnhXNXat6v7e3M9PhoMHOTARUMCaf5qNO84r5x9AFf5HDzm3rEZD8sb/n6dZ19SzFA=="
-      crossorigin="anonymous"
-      referrerpolicy="no-referrer"
-    />
-    <!-- NOTE GoogleFonts -->
-    <link rel="preconnect" href="https://fonts.googleapis.com" />
-    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
-    <link
-      href="https://fonts.googleapis.com/css2?family=Asap:ital,wght@1,500&family=Orbitron:wght@500&family=Poppins:wght@200&family=Roboto:ital,wght@1,300&family=Titan+One&display=swap"
-      rel="stylesheet"
-    />
+
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/MaterialDesign-Webfont/7.0.96/css/materialdesignicons.min.css" integrity="sha512-fXnjLwoVZ01NUqS/7G5kAnhXNXat6v7e3M9PhoMHOTARUMCaf5qNO84r5x9AFf5HDzm3rEZD8sb/n6dZ19SzFA==" crossorigin="anonymous" referrerpolicy="no-referrer" />
     <!-- NOTE style.css -->
     <link rel="stylesheet" href="style.css" />
   </head>
@@ -53,57 +40,88 @@
   </style>
   <!-- !SECTION -->
 
-  <body class="debug">
+  <body class="">
     <header>
       <div class="container-fluid">
         <div class="row">
           <div
             class="bg-dark text-light p-3 col-12 d-flex justify-content-center align-content-center"
           >
-            <h1>Ice Cream Parlor!</h1>
+            <h1>Ice Cream for Ice Cream</h1>
           </div>
         </div>
       </div>
     </header>
     <main class="hero-image">
-      <section class="container-fluid pt-4 ps-3">
-      
-
+      <div class="container-fluid pt-4 ps-3">
         <div class="row justify-content-between">
           <!-- TODO CART AREA  -->
-          <div class="col-md-4 bg-light rounded border border-2 border-dark ms-3" style="height: 70vh">
-          <div class="row" >
-            <div class="col-md-12 py-1 text-center" style="height: rem;"><h2>Receipt:</h2></div>
-            <div class="col-md-6  py-1 d-flex justify-content-center"><h3>Total:</h3></div>
-            <div class="col-md-6 py-1 text-center fs-4">$<span id="total" class="fs-4">0</span></div>
-            <div id="cart" class="col-md-12" ">
-
+          <div
+            class="col-md-4 bg-light rounded border border-2 border-dark ms-3"
+            style="height: 70vh"
+          >
+            <section class="row">
+              <div class="col-md-12 py-1 text-center" >
+                <h2>Receipt:</h2>
+              </div>
+              <div class="col-md-6 py-1 d-flex justify-content-center">
+                <h3>Total:</h3>
+              </div>
+              <div class="col-md-6 py-1 text-center fs-4">
+                <!-- SECTION TOTAL HERE -->
+                $<span id="total" class="fs-4">0</span>
+              </div>
+              <div ><button onclick="checkOut()" class="btn btn-primary fs-3"> CheckOut</button></div>
+              <!-- SECTION CART -->
+              <div id="cart" class="col-md-12" ">
+               
             </div>
-          </div>
-          
-          
-          
-           
-          </div>
-<!-- SECTION LEFT SIDE -->
-          <div class="col-md-6 bg-light d-flex me-4 rounded border border-2 border-dark">
-            <div class="container ">
-        <div class="row">
-          <div class="col-md-12  text-center p-2"><h2>Flavors</h2></div>
-          <!-- NOTE THIS IS WHERE THEY ARE BEING DRAWN -->
-         
-          <div  id="ice-creams" class="col-md-10 d-flex p-2" s>
-
-          </div>
-
-          <div id="vessels" class="col-md-10 d-flex p-2">
-
-          </div>
-          <div id="toppings" class="col-md-10 d-flex p-2">
-
-          </div>
+          </section>
         </div>
-       
+        
+        <div
+          class="col-md-6 bg-light d-flex me-4 rounded border border-2 border-dark"
+        >
+          <div class="container">
+            <section class="row">
+              <div class="col-md-12 text-center p-2"><h2>Flavors</h2></div>
+              <!-- SECTION FLAVOR/VESSEL/TOPPING ID's-->
+
+              <div id="ice-creams" class="col-md-12 d-flex p-2"></div>
+              
+              <div class="card mx-2 col-md-4" style="width: 10rem;">
+                <!-- NOTE onclick="addToCart()" ADD HERE -->
+                <img  src="https://hips.hearstapps.com/hmg-prod.s3.amazonaws.com/images/ultimate-vanilla-ice-cream-1628511695.jpg" class="card-img-top img-fluid" alt="...">
+                <div class="card-body ">
+                  <p class="card-title">Flavor: Vanilla</p>
+                  <p class="card-text">Price:</h>
+                  <button onclick="addFlavorsToCart('Vanilla')" class="btn btn-danger border border-4">AddToCart</button>
+                </div>
+              </div>
+
+              <div class="card mx-2 col-md-4" style="width: 10rem;">
+                <!-- NOTE onclick="addToCart()" ADD HERE -->
+                <img  src="https://celebratingsweets.com/wp-content/uploads/2014/04/Cookie-Dough-Ice-Cream-1-5.jpg" class="card-img-top img-fluid" alt="...">
+                <div class="card-body">
+                  <p class="card-title">Flavor:CookieDough</p>
+                  <p class="card-text">Price:</p>
+                  <button onclick="addFlavorsToCart('Cookie Dough')" class="btn btn-danger border border-4">AddToCart</button>
+                  <i></i>
+                </div>
+              </div>
+              <div class="card mx-2 col-md-4" style="width: 10rem;">
+                <!-- NOTE onclick="addToCart()" ADD HERE -->
+                <img  src="https://www.realfoodwithjessica.com/wp-content/uploads/2017/07/paleostrawberryicecream2.jpg" class="card-img-top" alt="...">
+                <div class="card-body">
+                  <h5 class="card-title">Flavor:StrawBerry</h5>
+                  <h5 class="card-text">Price:</h5>
+                  <button onclick="addFlavorsToCart('Strawberry')" class="btn btn-danger border border-4">AddToCart</button>
+                </div>
+              </div>
+              <div id="vessels" class="col-md-12 d-flex p-2"></div>
+              <div id="toppings" class="col-md-12 d-flex p-2"></div>
+              <!-- !SECTION -->
+            </section>
           </div>
         </div>
       </section>
@@ -111,10 +129,7 @@
     <footer></footer>
 
     <!-- SECTION SCRIPTS -->
-    <script
-      src="https://kit.fontawesome.com/a2d3ad0e84.js"
-      crossorigin="anonymous"
-    ></script>
+
     <script
       src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.0/dist/js/bootstrap.bundle.min.js"
       integrity="sha384-A3rJD856KowSb7dwlZdYEkO39Gagi7vIsF0jrRAoQmDKKtQBHUuLZ9AsSv4jD4Xa"
