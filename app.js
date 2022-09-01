@@ -170,9 +170,7 @@ function drawCart() {
 function drawTotal() {
    let total = 0
    let total_Div = document.getElementById('total')
-   iceCreams.forEach(flavor => {
-    total += flavor.price * flavor.quantity
-   })
+  
    vessels.forEach(vessel =>{
     total += vessel.price *  vessel.quantity
    })
