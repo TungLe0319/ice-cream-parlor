@@ -53,6 +53,8 @@ const toppings = [
   },
 ];
 
+const allProducts = [...vessels, ...iceCreams, ...toppings];
+
 function drawIceCreams() {
   let iceCream_Div = document.getElementById('ice-creams');
   let template = '';
@@ -138,7 +140,7 @@ function drawCart() {
       <i onclick="removeFlavor('${flavor.name}')" class="mdi mdi-trash-can fs-3"></i>
       <p class ="col-4 ">${flavor.name}</p>
       <p class ="col-4 text-center">x${flavor.quantity}</p>
-      <p class ="col-4 text-end">$${flavor.price}</p>
+      <p class ="col-4 text-center">$${flavor.price}</p>
     </div>`;
     }
   });
@@ -146,9 +148,9 @@ function drawCart() {
     if (vessel.quantity > 0) {
       template += `<div class="d-flex justify-content-between px-2 bg-warning rounded border-bottom border-1 border-dark">
       <i onclick="removeVessel('${vessel.name}')" class="mdi mdi-trash-can fs-3"></i>
-      <p>${vessel.name}</p>
-      <p>x${vessel.quantity}</p>
-      <p>$${vessel.price}</p>
+      <p class="col-4">${vessel.name}</p>
+      <p class ="col-4 text-center">x${vessel.quantity}</p>
+      <p class ="col-4 text-center">$${vessel.price}</p>
     </div>`;
     }
   });
@@ -156,60 +158,62 @@ function drawCart() {
     if (topping.quantity > 0) {
       template += `<div class="d-flex justify-content-between px-2 bg-danger rounded border-bottom border-1 border-dark">
       <i onclick="removeTopping('${topping.name}')" class="mdi mdi-trash-can fs-3"></i>
-      <p>${topping.name}</p>
-      <p>x${topping.quantity}</p>
-      <p>$${topping.price}</p>
+      <p class="col-4">${topping.name}</p>
+      <p class ="col-4 text-center">x${topping.quantity}</p>
+      <p class ="col-4 text-center">$${topping.price}</p>
     </div>`;
     }
   });
 
   cart.innerHTML = template;
-  drawTotal()
+  drawTotal();
 }
 
 function drawTotal() {
-   let total = 0
-   let total_Div = document.getElementById('total')
-  
-   vessels.forEach(vessel =>{
-    total += vessel.price *  vessel.quantity
-   })
-   toppings.forEach(topping => {
-    total += topping.price * topping.quantity
-   })
-   total_Div.innerText = total.toFixed(2)
+  let total = 0;
+  let total_Div = document.getElementById('total');
+  iceCreams.forEach((flavor) => {
+    total += flavor.price * flavor.quantity;
+  });
+  vessels.forEach((vessel) => {
+    total += vessel.price * vessel.quantity;
+  });
+  toppings.forEach((topping) => {
+    total += topping.price * topping.quantity;
+  });
+  total_Div.innerText = total.toFixed(2);
 }
 
+function removeVessel(name) {
+  let vessel = vessels.find((vessel) => vessel.name == name);
 
+  vessel.quantity--;
 
-function removeVessel(name){
-
-let vessel = vessels.find(vessel => vessel.name == name)
-
-
- vessel.quantity--
-
- drawCart()
+  drawCart();
 }
-function removeTopping(name){
+function removeTopping(name) {
+  let topping = toppings.find((topping) => topping.name == name);
 
+  topping.quantity--;
 
-let topping = toppings.find(topping => topping.name == name)
-
- topping.quantity--
-
- drawCart()
+  drawCart();
 }
-function removeFlavor(name){
+function removeFlavor(name) {
+  let flavor = iceCreams.find((flavor) => flavor.name == name);
 
-  let flavor = iceCreams.find(flavor => flavor.name == name)
+  flavor.quantity--;
 
-
- flavor.quantity--
-
- drawCart()
+  drawCart();
 }
 
+function checkOut() {
+  if (window.confirm('Are You Ready To Check Out?')) {
+    allProducts.forEach((product) => {
+      product.quantity = 0;
+    });
+    drawCart();
+  }
+}
 
 // function removeItem(name){
 // let flavor = iceCreams.find(flavor => flavor.name == name)
@@ -221,7 +225,7 @@ function removeFlavor(name){
 // function removeItem(name){
 
 // let topping = toppings.find(topping => topping.name == name)
- 
+
 //  topping.quantity--
 //  drawCart()
 // }
