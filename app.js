@@ -135,6 +135,7 @@ function drawCart() {
   iceCreams.forEach((flavor) => {
     if (flavor.quantity > 0) {
       template += `<div class="d-flex justify-content-between bg-info rounded px-2 border-bottom border-1 border-dark">
+      <i onclick="removeFlavor('${flavor.name}')" class="mdi mdi-trash-can fs-3"></i>
       <p class ="col-4 ">${flavor.name}</p>
       <p class ="col-4 text-center">x${flavor.quantity}</p>
       <p class ="col-4 text-end">$${flavor.price}</p>
@@ -144,6 +145,7 @@ function drawCart() {
   vessels.forEach((vessel) => {
     if (vessel.quantity > 0) {
       template += `<div class="d-flex justify-content-between px-2 bg-warning rounded border-bottom border-1 border-dark">
+      <i onclick="removeVessel('${vessel.name}')" class="mdi mdi-trash-can fs-3"></i>
       <p>${vessel.name}</p>
       <p>x${vessel.quantity}</p>
       <p>$${vessel.price}</p>
@@ -153,6 +155,7 @@ function drawCart() {
   toppings.forEach((topping) => {
     if (topping.quantity > 0) {
       template += `<div class="d-flex justify-content-between px-2 bg-danger rounded border-bottom border-1 border-dark">
+      <i onclick="removeTopping('${topping.name}')" class="mdi mdi-trash-can fs-3"></i>
       <p>${topping.name}</p>
       <p>x${topping.quantity}</p>
       <p>$${topping.price}</p>
@@ -179,6 +182,51 @@ function drawTotal() {
    total_Div.innerText = total.toFixed(2)
 }
 
+
+
+function removeVessel(name){
+
+let vessel = vessels.find(vessel => vessel.name == name)
+
+
+ vessel.quantity--
+
+ drawCart()
+}
+function removeTopping(name){
+
+
+let topping = toppings.find(topping => topping.name == name)
+
+ topping.quantity--
+
+ drawCart()
+}
+function removeFlavor(name){
+
+  let flavor = iceCreams.find(flavor => flavor.name == name)
+
+
+ flavor.quantity--
+
+ drawCart()
+}
+
+
+// function removeItem(name){
+// let flavor = iceCreams.find(flavor => flavor.name == name)
+
+//  flavor.quantity--
+
+//  drawCart()
+// }
+// function removeItem(name){
+
+// let topping = toppings.find(topping => topping.name == name)
+ 
+//  topping.quantity--
+//  drawCart()
+// }
 // function addPrice(){
 //   let flavorPrice=iceCreams.find(icecream => icecream.price.valueOf)
 //   let vesselPrice= vessels.find(vessel => vessel.price.valueOf)
